@@ -1,0 +1,29 @@
+import asyncio
+import os
+
+from aiogram import Bot, Dispatcher
+from aiogram.fsm.storage.memory import MemoryStorage
+
+from .handlers import register_handlers
+
+
+def main() -> None:
+    token = os.getenv("BOT_TOKEN")
+    if not token:
+        print("BOT_TOKEN environment variable is required")
+        return
+
+    bot = Bot(token)
+    dp = Dispatcher(storage=MemoryStorage())
+    register_handlers(dp)
+
+    asyncio.run(_run(bot, dp))
+
+
+async def _run(bot: Bot, dp: Dispatcher) -> None:
+    await bot.delete_webhook(drop_pending_updates=True)
+    await dp.start_polling(bot)
+
+
+if __name__ == "__main__":
+    main()
