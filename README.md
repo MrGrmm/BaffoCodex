@@ -34,3 +34,11 @@ python manage.py load_initial_data path/to/data.json
 
 - Browse APIs at `/swagger/` or `/redoc/`.
 - CRUD endpoints are available under `/api/`.
+
+## Waiter bot
+
+This repository also ships with a small Telegram bot that helps waiters send
+orders to the kitchen. It relies on the same Django backend for menu data.
+See [waiter_bot/README.md](waiter_bot/README.md) for installation and usage
+instructions. The bot asks for a table number and then walks the waiter through
+choosing categories and dishes.
