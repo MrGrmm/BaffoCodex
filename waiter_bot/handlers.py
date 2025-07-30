@@ -10,6 +10,7 @@ from .db import save_order
 from .menu import get_categories, get_dishes
 
 
+
 class OrderStates(StatesGroup):
     choosing_table = State()
     choosing_category = State()
