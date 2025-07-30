@@ -6,8 +6,9 @@ from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-from waiter_bot.db import save_order
-from waiter_bot.menu import get_categories, get_dishes
+from .db import save_order
+from .menu import get_categories, get_dishes
+
 
 
 class OrderStates(StatesGroup):
