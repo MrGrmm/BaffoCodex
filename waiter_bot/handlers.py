@@ -1,13 +1,15 @@
 import os
 from typing import Any, Dict, List
+from aiogram import F
+
 
 from aiogram import Bot, Dispatcher, types
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-from .db import save_order
-from .menu import get_categories, get_dishes
+from waiter_bot.db import save_order
+from waiter_bot.menu import get_categories, get_dishes
 
 
 
@@ -43,7 +45,7 @@ def dishes_keyboard(dishes: List[Dict[str, Any]]) -> InlineKeyboardMarkup:
 
 
 def register_handlers(dp: Dispatcher) -> None:
-    dp.message.register(cmd_start, commands={"start"})
+    dp.message.register(cmd_start, F.text == "/start")
     dp.callback_query.register(table_chosen, lambda c: c.data.startswith("table"), OrderStates.choosing_table)
     dp.callback_query.register(category_chosen, lambda c: c.data.startswith("cat"), OrderStates.choosing_category)
     dp.callback_query.register(dish_chosen, lambda c: c.data.startswith("dish"), OrderStates.choosing_dish)

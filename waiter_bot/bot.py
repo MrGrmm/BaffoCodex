@@ -11,10 +11,12 @@ if __package__ is None or __package__ == "":
 from aiogram import Bot, Dispatcher
 from aiogram.fsm.storage.memory import MemoryStorage
 
+from waiter_bot.handlers import register_handlers
+
 from waiter_bot.handlers import register_handlers  # <= правильный импорт
 
 def main() -> None:
-    token = os.getenv("BOT_TOKEN")
+    token = '8213976596:AAFXaUgosZy36ZJLER1kP-1S8Pi_evcWcXA'  # os.getenv("BOT_TOKEN")
     if not token:
         print("BOT_TOKEN environment variable is required")
         return
