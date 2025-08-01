@@ -37,7 +37,10 @@ python manage.py load_initial_data path/to/data.json
 
 ## Waiter bot
 
+
 This repository also ships with a small Telegram bot that helps waiters send
 orders to the kitchen. The menu is defined locally in `waiter_bot/menu.py`.
 
-See [waiter_bot/README.md](waiter_bot/README.md) for installation and usage instructions. The bot asks for guest count, location (Inside/Outside) and table number before showing menu pages to build an order.
+See [waiter_bot/README.md](waiter_bot/README.md) for installation and usage instructions.
+The bot asks for guest count, location and walks the waiter through choosing categories and dishes.
+
