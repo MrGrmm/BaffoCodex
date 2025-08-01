@@ -14,16 +14,25 @@ CREATE TABLE IF NOT EXISTS orders (
 )
 """
 
-async def init_db():
+async def init_db() -> None:
     async with aiosqlite.connect(DB_PATH) as db:
         await db.execute(CREATE_TABLE_SQL)
         await db.commit()
 
-async def save_order(items: list, waiter_name: str | None = None, table_number: int | None = None) -> None:
+
+async def save_order(
+    items: list,
+    waiter_name: str,
+    table_number: int,
+    guests_count: int
+) -> None:
     await init_db()
     async with aiosqlite.connect(DB_PATH) as db:
         await db.execute(
-            "INSERT INTO orders (waiter_name, table_number, items) VALUES (?, ?, ?)",
-            (waiter_name, table_number, json.dumps(items)),
+            """
+            INSERT INTO orders (waiter_name, table_number, guests_count, items)
+            VALUES (?, ?, ?, ?)
+            """,
+            (waiter_name, table_number, guests_count, json.dumps(items)),
         )
         await db.commit()
